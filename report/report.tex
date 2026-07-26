@@ -45,6 +45,16 @@ Large language model agents are effectively stateless: each call sees only the m
 
 This project implements a lightweight assistant that executes multi-step tasks with tools while managing memory explicitly: what to write, what to recall, and how to stay within a token budget---without relying on million-token windows. The design follows the course framing of profile, memory, planning, and action; Thought--Action--Observation loops with a harness-owned observation channel; and context treated as a budget rather than a dump.
 
+\paragraph{Course deliverables.}
+The submission consists of three artefacts:
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Report} --- this LaTeX document (PDF).
+  \item \textbf{Repository} --- source code at
+    \url{https://github.com/ali-salloum6/Session-Aware-Task-Assistant}.
+  \item \textbf{Video} --- a live demo of the project running on a real OpenRouter run
+    (preference write/recall, tools, local traces, Langfuse, and evaluation tables).
+\end{enumerate}
+
 \section{Problem and goals}
 
 \paragraph{Goals.}
@@ -195,14 +205,17 @@ P9 video (stable live run) & Ali Salloum & --- \\
 
 We delivered a session-aware ReAct assistant with bounded short-term context, cross-session long-term memory, LangGraph orchestration, dual-layer evaluation, and reproducible run traces (local and Langfuse). Live memory-mode runs meet the proposal quality targets on the frozen suite; the offline harness demonstrates context efficiency against full history and validates that the metric checker detects intentional failures.
 
-\section*{Repository artefacts}
+\section*{Submission artefacts}
 
-\begin{itemize}[leftmargin=*]
-  \item Source: \texttt{src/assistant/}, scripts under \texttt{scripts/}
-  \item Architecture / policy: \texttt{docs/architecture.md}, \texttt{docs/memory-policy.md}
-  \item Eval: \texttt{eval/scenarios/}, \texttt{eval/suites/}, \texttt{scripts/run\_eval.py}
-  \item This report: \texttt{report/report.tex}
-\end{itemize}
+The three course deliverables are:
+\begin{enumerate}[leftmargin=*]
+  \item \textbf{Report:} this PDF (\texttt{report/report.pdf}; source \texttt{report/report.tex}).
+  \item \textbf{Repository:}
+    \url{https://github.com/ali-salloum6/Session-Aware-Task-Assistant}
+    (includes \texttt{src/assistant/}, \texttt{scripts/}, \texttt{eval/},
+    \texttt{docs/architecture.md}, \texttt{docs/memory-policy.md}).
+  \item \textbf{Video:} live demo of a real run (bundled with the submission package).
+\end{enumerate}
 
 \begin{thebibliography}{9}
 \bibitem{react}
