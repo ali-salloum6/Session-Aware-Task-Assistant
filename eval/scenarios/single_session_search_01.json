@@ -1,0 +1,38 @@
+{
+  "id": "single_session_search_01",
+  "category": "single-session",
+  "description": "Scoped KB search for Acme HQ.",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "Where is Acme Robotics headquartered? Use search.",
+          "offline": {
+            "tool_calls": [
+              [
+                "search",
+                {
+                  "query": "headquartered Berlin"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "tool_called": [
+              "search"
+            ],
+            "answer_contains_any": [
+              "Berlin"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

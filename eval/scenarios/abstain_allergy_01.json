@@ -1,0 +1,44 @@
+{
+  "id": "abstain_allergy_01",
+  "category": "abstention",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "user_id": "eval-abs-allergy",
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "Am I allergic to peanuts?",
+          "offline": {
+            "tool_calls": [],
+            "by_mode": {
+              "memory": {
+                "tool_calls": [
+                  [
+                    "recall",
+                    {
+                      "query": "allergy peanuts"
+                    }
+                  ]
+                ]
+              }
+            }
+          },
+          "checks": {
+            "must_abstain": [
+              "you are allergic",
+              "peanut allergy confirmed"
+            ],
+            "forbid_claims": [
+              "you are allergic"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "abstain_color_01",
+  "category": "abstention",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "user_id": "eval-abs-color",
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "What is my favorite color?",
+          "offline": {
+            "tool_calls": [],
+            "by_mode": {
+              "memory": {
+                "tool_calls": [
+                  [
+                    "recall",
+                    {
+                      "query": "favorite color"
+                    }
+                  ]
+                ]
+              }
+            }
+          },
+          "checks": {
+            "must_abstain": [
+              "is blue",
+              "is green",
+              "is red",
+              "you prefer",
+              "your favorite color is"
+            ],
+            "forbid_claims": [
+              "favorite color is"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

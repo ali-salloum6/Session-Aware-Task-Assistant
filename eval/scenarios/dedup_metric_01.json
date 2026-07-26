@@ -1,0 +1,52 @@
+{
+  "id": "dedup_metric_01",
+  "category": "deduplication",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-dedup-1",
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "Remember I prefer metric units.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User prefers metric units",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_count_min": 1
+          }
+        },
+        {
+          "user": "Please remember again that I prefer metric units.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User prefers metric units",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_count_max": 1,
+            "memory_texts_contain_any": [
+              "metric"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "offline_fail_skip_remember_01",
+  "category": "cross-session",
+  "expected_fail": true,
+  "description": "Negative control: never remember → later must_recall cannot pass.",
+  "modes": ["memory"],
+  "user_id": "eval-fail-skip-remember",
+  "sessions": [
+    {
+      "session_id": "a",
+      "turns": [
+        {
+          "user": "Please remember I prefer metric units.",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {}
+        }
+      ]
+    },
+    {
+      "session_id": "b",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "What measurement system should you use for me?",
+          "offline": {
+            "tool_calls": [
+              ["recall", {"query": "units preference"}]
+            ]
+          },
+          "checks": {
+            "must_recall": ["metric"],
+            "answer_contains_any": ["metric"]
+          }
+        }
+      ]
+    }
+  ]
+}

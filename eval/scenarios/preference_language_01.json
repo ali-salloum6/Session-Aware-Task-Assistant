@@ -1,0 +1,62 @@
+{
+  "id": "preference_language_01",
+  "category": "preference",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-pref-lang",
+  "sessions": [
+    {
+      "session_id": "a",
+      "turns": [
+        {
+          "user": "Remember I prefer brief replies in English.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User prefers brief English replies",
+                  "memory_type": "procedural"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_texts_contain_any": [
+              "brief"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "b",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "How should you reply to me?",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "reply preference"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "must_recall": [
+              "brief"
+            ],
+            "answer_contains_any": [
+              "brief",
+              "English"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

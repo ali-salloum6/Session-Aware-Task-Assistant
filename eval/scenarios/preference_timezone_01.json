@@ -1,0 +1,61 @@
+{
+  "id": "preference_timezone_01",
+  "category": "preference",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-pref-tz",
+  "sessions": [
+    {
+      "session_id": "a",
+      "turns": [
+        {
+          "user": "Remember my timezone is America/Chicago.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User timezone is America/Chicago",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_texts_contain_any": [
+              "Chicago"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "b",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "Which timezone should you use for me?",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "timezone"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "must_recall": [
+              "Chicago"
+            ],
+            "answer_contains_any": [
+              "Chicago"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

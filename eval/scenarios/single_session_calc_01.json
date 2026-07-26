@@ -1,0 +1,38 @@
+{
+  "id": "single_session_calc_01",
+  "category": "single-session",
+  "description": "Basic calculator task completion.",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "What is 12 * 8? Use the calculator.",
+          "offline": {
+            "tool_calls": [
+              [
+                "calculator",
+                {
+                  "expression": "12*8"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "tool_called": [
+              "calculator"
+            ],
+            "answer_contains_any": [
+              "96"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

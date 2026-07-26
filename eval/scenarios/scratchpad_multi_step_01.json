@@ -1,0 +1,54 @@
+{
+  "id": "scratchpad_multi_step_01",
+  "category": "scratchpad",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "Plan then compute (3+5)*2 with the calculator. Update the scratchpad.",
+          "offline": {
+            "tool_calls": [
+              [
+                "update_scratchpad",
+                {
+                  "plan": "Compute (3+5)*2",
+                  "done": "",
+                  "next": "call calculator"
+                }
+              ],
+              [
+                "calculator",
+                {
+                  "expression": "(3+5)*2"
+                }
+              ],
+              [
+                "update_scratchpad",
+                {
+                  "plan": "Compute (3+5)*2",
+                  "done": "result=16",
+                  "next": "report"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "tool_called": [
+              "update_scratchpad",
+              "calculator"
+            ],
+            "answer_contains_any": [
+              "16"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

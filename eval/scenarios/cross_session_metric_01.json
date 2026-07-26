@@ -1,0 +1,67 @@
+{
+  "id": "cross_session_metric_01",
+  "category": "cross-session",
+  "description": "Preference survives new session_id.",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-xs-metric",
+  "sessions": [
+    {
+      "session_id": "a",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "Please remember I prefer metric units for all measurements.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User prefers metric units for all measurements",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_texts_contain_any": [
+              "metric"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "b",
+      "fresh_stm": true,
+      "fresh_scratchpad": true,
+      "turns": [
+        {
+          "user": "What measurement system should you use for me?",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "measurement units preference"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "must_recall": [
+              "metric"
+            ],
+            "answer_contains_any": [
+              "metric"
+            ],
+            "forbid_claims": [
+              "imperial preferred"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

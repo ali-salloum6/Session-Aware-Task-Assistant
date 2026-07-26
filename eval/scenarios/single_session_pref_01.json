@@ -1,0 +1,62 @@
+{
+  "id": "single_session_pref_01",
+  "category": "single-session",
+  "description": "Remember preference then use it in the same session.",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-ss-pref",
+  "sessions": [
+    {
+      "session_id": "s1",
+      "fresh_stm": true,
+      "fresh_scratchpad": true,
+      "turns": [
+        {
+          "user": "Please remember I prefer metric units.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User prefers metric units",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "tool_called": [
+              "remember"
+            ],
+            "memory_texts_contain_any": [
+              "metric"
+            ]
+          }
+        },
+        {
+          "user": "What unit system do I prefer?",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "unit preference",
+                  "k": 3
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "must_recall": [
+              "metric"
+            ],
+            "answer_contains_any": [
+              "metric"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

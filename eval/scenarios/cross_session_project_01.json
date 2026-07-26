@@ -1,0 +1,62 @@
+{
+  "id": "cross_session_project_01",
+  "category": "cross-session",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-xs-project",
+  "sessions": [
+    {
+      "session_id": "a",
+      "turns": [
+        {
+          "user": "Remember I work on the Acme warehouse robot firmware.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User works on Acme warehouse robot firmware",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_texts_contain_any": [
+              "warehouse"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "b",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "What project do I work on?",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "project work"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "must_recall": [
+              "warehouse"
+            ],
+            "answer_contains_any": [
+              "warehouse",
+              "firmware"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

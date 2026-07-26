@@ -1,0 +1,49 @@
+{
+  "id": "dedup_timezone_01",
+  "category": "deduplication",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-dedup-3",
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "Remember my timezone is Europe/Helsinki.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User timezone is Europe/Helsinki",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_count_min": 1
+          }
+        },
+        {
+          "user": "Remember: timezone Europe/Helsinki.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User timezone is Europe/Helsinki",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_count_max": 1
+          }
+        }
+      ]
+    }
+  ]
+}

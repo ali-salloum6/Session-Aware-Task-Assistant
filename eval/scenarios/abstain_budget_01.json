@@ -1,0 +1,45 @@
+{
+  "id": "abstain_budget_01",
+  "category": "abstention",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "user_id": "eval-abs-budget",
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "What is my monthly budget cap?",
+          "offline": {
+            "tool_calls": [],
+            "by_mode": {
+              "memory": {
+                "tool_calls": [
+                  [
+                    "recall",
+                    {
+                      "query": "budget cap"
+                    }
+                  ]
+                ]
+              }
+            }
+          },
+          "checks": {
+            "must_abstain": [
+              "$5000",
+              "your budget is",
+              "budget of"
+            ],
+            "forbid_claims": [
+              "budget is"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

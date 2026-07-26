@@ -1,0 +1,24 @@
+{
+  "id": "offline_fail_missing_calc_01",
+  "category": "single-session",
+  "expected_fail": true,
+  "description": "Negative control: no calculator tool call → cannot produce 96.",
+  "modes": ["memory"],
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "What is 12 * 8? Use the calculator.",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "tool_called": ["calculator"],
+            "answer_contains_any": ["96"]
+          }
+        }
+      ]
+    }
+  ]
+}

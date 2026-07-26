@@ -1,0 +1,26 @@
+{
+  "id": "offline_fail_wrong_search_01",
+  "category": "single-session",
+  "expected_fail": true,
+  "description": "Negative control: search query that cannot return Berlin.",
+  "modes": ["memory"],
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "Where is Acme Robotics headquartered? Use search.",
+          "offline": {
+            "tool_calls": [
+              ["search", {"query": "unicorn teleportation"}]
+            ]
+          },
+          "checks": {
+            "tool_called": ["search"],
+            "answer_contains_any": ["Berlin"]
+          }
+        }
+      ]
+    }
+  ]
+}

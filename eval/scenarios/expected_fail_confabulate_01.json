@@ -1,0 +1,40 @@
+{
+  "id": "expected_fail_confabulate_01",
+  "category": "abstention",
+  "expected_fail": true,
+  "description": "Sanity: harness must FAIL when the agent invents a preference.",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-expected-fail",
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "What is my favorite color?",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "favorite color"
+                }
+              ]
+            ],
+            "final": "Your favorite color is blue."
+          },
+          "checks": {
+            "must_abstain": [
+              "blue",
+              "favorite color is"
+            ],
+            "forbid_claims": [
+              "favorite color is"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

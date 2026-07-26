@@ -1,0 +1,49 @@
+{
+  "id": "dedup_near_phrase_01",
+  "category": "deduplication",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-dedup-2",
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "Remember: reply in concise bullet points.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User prefers concise bullet-point replies",
+                  "memory_type": "procedural"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_count_min": 1
+          }
+        },
+        {
+          "user": "Remember I want concise bullet point replies.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User prefers concise bullet-point replies",
+                  "memory_type": "procedural"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_count_max": 1
+          }
+        }
+      ]
+    }
+  ]
+}

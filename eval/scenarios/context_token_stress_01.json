@@ -1,0 +1,210 @@
+{
+  "id": "context_token_stress_01",
+  "category": "context-efficiency",
+  "description": "Long padded turns to compare B0/B1/B2 context tokens (\u226530% B2 vs B1).",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "sessions": [
+    {
+      "session_id": "s1",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "Status note 1 uniqueid1x. PrivatePadding1:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 2 uniqueid2x. PrivatePadding2:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 3 uniqueid3x. PrivatePadding3:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 4 uniqueid4x. PrivatePadding4:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 5 uniqueid5x. PrivatePadding5:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 6 uniqueid6x. PrivatePadding6:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 7 uniqueid7x. PrivatePadding7:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 8 uniqueid8x. PrivatePadding8:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 9 uniqueid9x. PrivatePadding9:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 10 uniqueid10x. PrivatePadding10:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 11 uniqueid11x. PrivatePadding11:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        },
+        {
+          "user": "Status note 12 uniqueid12x. PrivatePadding12:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv  fillerzxqv ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "Status",
+              "From earlier",
+              "uniqueid",
+              "Recalled"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+# --- Local workspace (handouts, notes, machine-only copies) ---
+# Kept out of the submission tree; clone stays lean.
+.local/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# --- Runtime artefacts ---
+*.log
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+data/raw/
+data/cache/
+data/memory/
+data/checkpoints/
+traces/
+eval/results/*
+!eval/results/.gitkeep
+*.sqlite3
+
+# --- Notebooks / exports ---
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# --- Build / report intermediates ---
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+report/_build/
+dist/
+build/

@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentic-ai-assistant"
+version = "0.1.0"
+description = "Session-aware task assistant with long-term memory"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "openai>=1.40",
+  "python-dotenv>=1.0",
+  "chromadb>=0.5",
+  "langgraph>=0.2",
+  "langgraph-checkpoint-sqlite>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+observability = ["langfuse>=2.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = [
+  "live: hits a real LLM API; enable with RUN_LIVE=1",
+]

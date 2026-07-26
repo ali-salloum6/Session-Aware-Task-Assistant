@@ -1,0 +1,62 @@
+{
+  "id": "cross_session_deadline_01",
+  "category": "cross-session",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-xs-deadline",
+  "sessions": [
+    {
+      "session_id": "a",
+      "turns": [
+        {
+          "user": "Remember: the Orion demo deadline is Friday 5pm.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "Orion demo deadline is Friday 5pm",
+                  "memory_type": "episodic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_texts_contain_any": [
+              "Friday"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "b",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "When is the Orion demo due?",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "Orion demo deadline"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "must_recall": [
+              "Friday"
+            ],
+            "answer_contains_any": [
+              "Friday",
+              "5pm"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

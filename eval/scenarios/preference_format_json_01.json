@@ -1,0 +1,68 @@
+{
+  "id": "preference_format_json_01",
+  "category": "preference",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-pref-json",
+  "sessions": [
+    {
+      "session_id": "a",
+      "turns": [
+        {
+          "user": "Remember: always format numeric answers as JSON like {\"value\": N}.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User wants numeric answers as JSON {\"value\": N}",
+                  "memory_type": "procedural"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_texts_contain_any": [
+              "JSON"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "b",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "What is 7+5? Use calculator and my format.",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "answer format"
+                }
+              ],
+              [
+                "calculator",
+                {
+                  "expression": "7+5"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "must_recall": [
+              "JSON"
+            ],
+            "answer_contains_any": [
+              "\"value\"",
+              "12"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

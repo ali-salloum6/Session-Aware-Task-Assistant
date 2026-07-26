@@ -1,0 +1,13 @@
+{
+  "description": "Frozen subset for live system metrics (report). Keep small — real API calls.",
+  "scenarios": [
+    {"id": "single_session_calc_01", "modes": ["stateless", "full_history", "memory"]},
+    {"id": "single_session_search_01", "modes": ["stateless", "full_history", "memory"]},
+    {"id": "single_session_stm_fact_01", "modes": ["stateless", "full_history", "memory"]},
+    {"id": "abstain_color_01", "modes": ["stateless", "full_history", "memory"]},
+    {"id": "scratchpad_multi_step_01", "modes": ["memory"]},
+    {"id": "cross_session_metric_01", "modes": ["memory"]},
+    {"id": "preference_units_01", "modes": ["memory"]},
+    {"id": "dedup_metric_01", "modes": ["memory"]}
+  ]
+}

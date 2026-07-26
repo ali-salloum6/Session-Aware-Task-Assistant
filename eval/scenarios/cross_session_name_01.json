@@ -1,0 +1,62 @@
+{
+  "id": "cross_session_name_01",
+  "category": "cross-session",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-xs-name",
+  "sessions": [
+    {
+      "session_id": "a",
+      "turns": [
+        {
+          "user": "Remember that my name is Sam Rivera.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User's name is Sam Rivera",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_texts_contain_any": [
+              "Sam Rivera"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "b",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "What is my name?",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "user name"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "must_recall": [
+              "Sam Rivera"
+            ],
+            "answer_contains_all": [
+              "Sam",
+              "Rivera"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

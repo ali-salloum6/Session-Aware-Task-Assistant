@@ -1,0 +1,66 @@
+{
+  "id": "scratchpad_plan_track_01",
+  "category": "scratchpad",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "sessions": [
+    {
+      "session_id": "s1",
+      "turns": [
+        {
+          "user": "Start a plan: search Acme HQ then confirm city.",
+          "offline": {
+            "tool_calls": [
+              [
+                "update_scratchpad",
+                {
+                  "plan": "Find Acme HQ city",
+                  "done": "",
+                  "next": "search"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "tool_called": [
+              "update_scratchpad"
+            ]
+          }
+        },
+        {
+          "user": "Continue: search and answer.",
+          "offline": {
+            "tool_calls": [
+              [
+                "search",
+                {
+                  "query": "headquartered Berlin"
+                }
+              ],
+              [
+                "update_scratchpad",
+                {
+                  "plan": "Find Acme HQ city",
+                  "done": "Berlin",
+                  "next": ""
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "tool_called": [
+              "search",
+              "update_scratchpad"
+            ],
+            "answer_contains_any": [
+              "Berlin"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

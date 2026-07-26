@@ -1,0 +1,77 @@
+{
+  "id": "preference_units_01",
+  "category": "preference",
+  "modes": [
+    "memory"
+  ],
+  "user_id": "eval-pref-units",
+  "sessions": [
+    {
+      "session_id": "a",
+      "turns": [
+        {
+          "user": "Remember I prefer metric units.",
+          "offline": {
+            "tool_calls": [
+              [
+                "remember",
+                {
+                  "text": "User prefers metric units",
+                  "memory_type": "semantic"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "memory_texts_contain_any": [
+              "metric"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "session_id": "b",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "Convert 5 miles to my preferred system. Use the calculator for 5*1.60934.",
+          "offline": {
+            "tool_calls": [
+              [
+                "recall",
+                {
+                  "query": "preferred units"
+                }
+              ],
+              [
+                "calculator",
+                {
+                  "expression": "5*1.60934"
+                }
+              ]
+            ]
+          },
+          "checks": {
+            "tool_called": [
+              "calculator"
+            ],
+            "memory_texts_contain_any": [
+              "metric"
+            ],
+            "answer_contains_any": [
+              "km",
+              "metric",
+              "kilometer",
+              "kilometre"
+            ],
+            "forbid_claims": [
+              "imperial preferred",
+              "prefer miles"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

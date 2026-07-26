@@ -1,0 +1,58 @@
+{
+  "id": "single_session_stm_fact_01",
+  "category": "single-session",
+  "description": "STM holds a fact across turns (not LTM). B0 abstains on the recall turn.",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "sessions": [
+    {
+      "session_id": "s1",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "My project code name is Orion. Please confirm by repeating the code name Orion back to me. Do not use tools.",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Orion"
+            ]
+          }
+        },
+        {
+          "user": "What is my project code name?",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Orion"
+            ],
+            "by_mode": {
+              "stateless": {
+                "answer_contains_any": [
+                  "don't",
+                  "do not",
+                  "no access",
+                  "unless you tell",
+                  "cannot know",
+                  "don't know",
+                  "do not know",
+                  "not stored",
+                  "no stored",
+                  "not have that",
+                  "don't have",
+                  "do not have"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

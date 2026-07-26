@@ -1,0 +1,164 @@
+{
+  "id": "context_long_history_01",
+  "category": "context-efficiency",
+  "description": "Early fact recoverable via STM summary/selective recall; B0 abstains.",
+  "modes": [
+    "stateless",
+    "full_history",
+    "memory"
+  ],
+  "sessions": [
+    {
+      "session_id": "s1",
+      "fresh_stm": true,
+      "turns": [
+        {
+          "user": "Important: the secret token is ALPHA-7. contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad contextpad ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "ALPHA-7",
+              "value-",
+              "secret",
+              "filler"
+            ]
+          }
+        },
+        {
+          "user": "Note filler fact 1: value-1. qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "ALPHA-7",
+              "value-",
+              "secret",
+              "filler"
+            ]
+          }
+        },
+        {
+          "user": "Note filler fact 2: value-2. qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "ALPHA-7",
+              "value-",
+              "secret",
+              "filler"
+            ]
+          }
+        },
+        {
+          "user": "Note filler fact 3: value-3. qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "ALPHA-7",
+              "value-",
+              "secret",
+              "filler"
+            ]
+          }
+        },
+        {
+          "user": "Note filler fact 4: value-4. qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "ALPHA-7",
+              "value-",
+              "secret",
+              "filler"
+            ]
+          }
+        },
+        {
+          "user": "Note filler fact 5: value-5. qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "ALPHA-7",
+              "value-",
+              "secret",
+              "filler"
+            ]
+          }
+        },
+        {
+          "user": "Note filler fact 6: value-6. qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "ALPHA-7",
+              "value-",
+              "secret",
+              "filler"
+            ]
+          }
+        },
+        {
+          "user": "Note filler fact 7: value-7. qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz qpadxyz ",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_any": [
+              "Noted",
+              "don't",
+              "ALPHA-7",
+              "value-",
+              "secret",
+              "filler"
+            ]
+          }
+        },
+        {
+          "user": "What was the secret token?",
+          "offline": {
+            "tool_calls": []
+          },
+          "checks": {
+            "answer_contains_all": [
+              "ALPHA-7"
+            ],
+            "by_mode": {
+              "stateless": {
+                "answer_contains_all": [
+                  "don't"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

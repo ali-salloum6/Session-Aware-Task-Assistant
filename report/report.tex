@@ -1,0 +1,214 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{caption}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue!50!black
+}
+
+\title{Session-Aware Task Assistant\\with Long-Term Memory}
+\author{
+  Ajibade Ayomide \quad\textless a.ajibade@innopolis.university\textgreater\\
+  Ali Salloum \quad\textless a.salloum@innopolis.university\textgreater\\[0.6em]
+  \normalsize Innopolis University\\
+  Agentic AI --- Final Project Report
+}
+\date{26 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a ReAct-style task assistant that manages interaction-derived knowledge with dual-tier memory: a bounded short-term working context (scratchpad, rolling summary, selective turn recall) and a Chroma-backed long-term store with explicit \texttt{remember}/\texttt{recall} tools and post-task reflection. The agent is orchestrated with LangGraph and a SQLite checkpointer, instrumented with local JSON traces and optional Langfuse, and evaluated against two in-repo baselines (stateless and full-history). We report \emph{live} OpenRouter metrics for task quality and an \emph{offline harness} for checker sanity and context efficiency (\(\approx 41\%\) token reduction vs.\ full history on a shared scenario core). Negative controls confirm that the evaluation checker rejects known failure modes.
+\end{abstract}
+
+\tableofcontents
+\vspace{1em}
+
+\section{Introduction}
+
+Large language model agents are effectively stateless: each call sees only the messages supplied in the current context window. Multi-turn and cross-session work therefore loses user preferences, constraints, and prior outcomes unless the user repeats them or the system retains an unbounded transcript. Static retrieval over documents grounds answers in a corpus but not in \emph{interaction-derived} knowledge (for example, ``prefer metric units'' or ``we rejected design~A last week'').
+
+This project implements a lightweight assistant that executes multi-step tasks with tools while managing memory explicitly: what to write, what to recall, and how to stay within a token budget---without relying on million-token windows. The design follows the course framing of profile, memory, planning, and action; Thought--Action--Observation loops with a harness-owned observation channel; and context treated as a budget rather than a dump.
+
+\section{Problem and goals}
+
+\paragraph{Goals.}
+\begin{enumerate}[leftmargin=*]
+  \item Execute multi-step tasks with tools (\texttt{calculator}, scoped \texttt{search}, \texttt{remember}, \texttt{recall}, \texttt{update\_scratchpad}).
+  \item Keep a \textbf{bounded} short-term context (scratchpad + summary + selective recall + last-\(N\) turns).
+  \item Persist durable facts across sessions in a vector store, scoped by \texttt{user\_id}.
+  \item Compare against (B0)~stateless ReAct and (B1)~append-all history using a fixed scenario suite.
+  \item Produce reproducible artefacts: repository, LaTeX report, and a live demo video of a real run.
+\end{enumerate}
+
+\paragraph{Non-goals.}
+Production authentication, consent productization, multi-agent orchestration, GraphRAG, MCP tool hosting, and fine-tuning are out of scope.
+
+\section{Method}
+
+\subsection{Agent loop}
+
+The product path uses native tool calling. Each step the model may emit tool calls; the harness executes tools and appends observations. The loop stops on a final answer or a hard step budget (\texttt{MAX\_STEPS}). The default LLM is OpenRouter \texttt{google/gemini-2.5-flash}.
+
+\subsection{Short-term memory}
+
+Short-term memory (STM) maintains dialogue turns and a structured scratchpad (PLAN / DONE / NEXT) reinjected every model call. In \texttt{bounded} mode, when the estimated token budget is approached, older turns are compressed into a rolling summary and selectively recalled by relevance; recent turns remain verbatim. In \texttt{full} mode (baseline~B1), history is appended without summarization.
+
+\subsection{Long-term memory}
+
+Long-term memory (LTM) is a Chroma collection on disk. Writes occur via the \texttt{remember} tool (explicit user request) or a single post-task reflection pass that may propose 0--3 durable facts and must abstain when nothing lasting was learned. Near-duplicates are skipped by cosine distance. Entries carry \texttt{memory\_type} (episodic / semantic / procedural), source, and timestamps. Recall is top-\(k\) and user-scoped; empty recall must surface as unknown (no confabulation).
+
+\subsection{Orchestration and observability}
+
+LangGraph nodes implement: assemble context \(\rightarrow\) agent \(\rightarrow\) tools (loop) \(\rightarrow\) finalize \(\rightarrow\) reflect memory. Session resume uses a SQLite checkpointer keyed by \texttt{session\_id}. Every run writes a local JSON trace (input, tools, recalled IDs, token estimates, latency). When Langfuse keys are configured, the same payload is emitted as an agent observation with nested tool spans.
+
+\subsection{Baselines}
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Mode & Alias & Behaviour \\
+\midrule
+\texttt{stateless} & B0 & No STM history, no LTM tools/injection, no reflection \\
+\texttt{full\_history} & B1 & STM append-all, no LTM \\
+\texttt{memory} & B2 & Bounded STM + LTM + reflection \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Architecture}
+
+Figure~\ref{fig:arch} summarises the LangGraph control flow used in memory mode.
+
+\begin{figure}[ht]
+\centering
+\fbox{\parbox{0.92\textwidth}{\centering\ttfamily\small
+START $\to$ assemble\_context $\to$ agent $\leftrightarrows$ tools $\to$ finalize $\to$ reflect\_memory $\to$ END
+}}
+\caption{LangGraph node pipeline (memory mode). Checkpointer: SQLite; \texttt{thread\_id}=\texttt{session\_id}.}
+\label{fig:arch}
+\end{figure}
+
+Context assembly concatenates system instructions, scratchpad, optional LTM hits, STM history (summary + recalled turns + recent turns), and the current user task. Reflection runs only in memory mode and applies a deduplication gate before writes. Full notes live in the repository at \texttt{docs/architecture.md} and \texttt{docs/memory-policy.md}.
+
+\section{Memory write policy}
+
+Long-term memory is written deliberately: on explicit user request via \texttt{remember}, or after a task via reflection that may propose 0--3 durable facts (preferences, constraints, decisions) and must abstain when nothing lasting was learned. Near-duplicates are skipped so repeated preferences do not multiply. Ephemeral arithmetic and tool noise are not stored. Empty recall must be answered as unknown, never confabulated.
+
+\section{Evaluation}
+
+We separate two result layers and do not mix their percentages.
+
+\subsection{Offline harness (regression / checker)}
+
+Scripted tool calls with observation-only final answers exercise the metric checkers. Shared-core rows use equal \(N\) across B0/B1/B2. Negative controls inject missing tools, wrong search results, skipped remembers, and confabulation; the checker is expected to fail them.
+
+\begin{table}[ht]
+\centering
+\caption{Offline harness (shared-core). Not model-quality scores.}
+\label{tab:harness}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Mode & \(N\) & Task compl. & Recall & Faithfulness & Mean tokens \\
+\midrule
+stateless & 10 & 100.0\% & 100.0\% & 100.0\% & 1563 \\
+full\_history & 10 & 100.0\% & 100.0\% & 100.0\% & 7033 \\
+memory & 10 & 100.0\% & 100.0\% & 100.0\% & 4530 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Context efficiency vs.\ B1 on the shared core: \(\mathbf{41.1\%}\) mean-token reduction for memory mode (target \(\ge 30\%\)). Negative controls: \textbf{4/4} expected failures correctly caught.
+
+\subsection{Live system metrics (OpenRouter)}
+
+A frozen live subset runs the real model end-to-end. These numbers support quality claims.
+
+\begin{table}[ht]
+\centering
+\caption{Live system metrics (\texttt{google/gemini-2.5-flash} via OpenRouter).}
+\label{tab:live}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Mode & \(N\) & Task compl. & Recall & Faithfulness & Mean tokens \\
+\midrule
+stateless & 4 & 100.0\% & 100.0\% & 100.0\% & 988 \\
+full\_history & 4 & 75.0\% & 100.0\% & 100.0\% & 1098 \\
+memory & 8 & 100.0\% & 100.0\% & 100.0\% & 1162 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Reading the tables.}
+Cite Table~\ref{tab:live} for task completion / recall / faithfulness. Cite Table~\ref{tab:harness} for context efficiency and checker sanity. The live full-history STM miss (75\% task completion) is a real model failure retained in the report.
+
+\section{Discussion and limitations}
+
+\begin{itemize}[leftmargin=*]
+  \item Live \(N\) is small (frozen report subset) by design for cost and deadline; harness \(N\) is larger but scripted.
+  \item Token estimates are heuristic; absolute token counts from the provider may differ.
+  \item Embeddings and Chroma packaging can vary across platforms; the store is local-directory persistent.
+  \item Reflection quality depends on the LLM; policy and dedup mitigate, but do not eliminate, weak writes.
+  \item Langfuse is optional; local JSON traces are the always-on ground truth for debugging.
+\end{itemize}
+
+\section{Task distribution}
+
+\begin{table}[ht]
+\centering
+\caption{Phase ownership (lead / support).}
+\label{tab:owners}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Phase & Lead & Support \\
+\midrule
+P0--P1 (smoke, ReAct tools) & Ajibade Ayomide & Ali Salloum \\
+P2--P3 (scratchpad, context budget) & Ali Salloum & Ajibade Ayomide \\
+P4--P5 (LTM, write policy) & Ajibade Ayomide & Ali Salloum \\
+P6--P7 (LangGraph, observability) & Ali Salloum & Ajibade Ayomide \\
+P8 scenarios & both (split categories) & --- \\
+P8 harness / metrics & Ajibade Ayomide & --- \\
+P9 report & Ali Salloum (draft); Ajibade Ayomide (methods/eval) & --- \\
+P9 video & Ali Salloum (stable live run) & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+
+We delivered a session-aware ReAct assistant with bounded short-term context, cross-session long-term memory, LangGraph orchestration, dual-layer evaluation, and reproducible run traces (local and Langfuse). Live memory-mode runs meet the proposal quality targets on the frozen suite; the offline harness demonstrates context efficiency against full history and validates that the metric checker detects intentional failures.
+
+\section*{Repository artefacts}
+
+\begin{itemize}[leftmargin=*]
+  \item Source: \texttt{src/assistant/}, scripts under \texttt{scripts/}
+  \item Architecture / policy: \texttt{docs/architecture.md}, \texttt{docs/memory-policy.md}
+  \item Eval: \texttt{eval/scenarios/}, \texttt{eval/suites/}, \texttt{scripts/run\_eval.py}
+  \item This report: \texttt{report/report.tex}
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{react}
+  S.~Yao et~al., ``ReAct: Synergizing Reasoning and Acting in Language Models,'' ICLR, 2023.
+\bibitem{langgraph}
+  LangChain, ``LangGraph,'' documentation, 2024--2026.
+\bibitem{langfuse}
+  Langfuse, ``Open-source LLM engineering platform,'' documentation, 2024--2026.
+\bibitem{chroma}
+  Chroma, ``Chroma vector database,'' documentation, 2024--2026.
+\end{thebibliography}
+
+\end{document}
