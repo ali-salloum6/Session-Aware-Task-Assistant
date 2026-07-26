@@ -3,6 +3,8 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{microtype}
@@ -171,7 +173,8 @@ Cite Table~\ref{tab:live} for task completion / recall / faithfulness. Cite Tabl
 \centering
 \caption{Phase ownership (lead / support).}
 \label{tab:owners}
-\begin{tabular}{@{}lll@{}}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.34\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
 \toprule
 Phase & Lead & Support \\
 \midrule
@@ -181,10 +184,11 @@ P4--P5 (LTM, write policy) & Ajibade Ayomide & Ali Salloum \\
 P6--P7 (LangGraph, observability) & Ali Salloum & Ajibade Ayomide \\
 P8 scenarios & both (split categories) & --- \\
 P8 harness / metrics & Ajibade Ayomide & --- \\
-P9 report & Ali Salloum (draft); Ajibade Ayomide (methods/eval) & --- \\
-P9 video & Ali Salloum (stable live run) & --- \\
+P9 report (draft) & Ali Salloum & --- \\
+P9 report (methods/eval) & Ajibade Ayomide & --- \\
+P9 video (stable live run) & Ali Salloum & --- \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 \section{Conclusion}
